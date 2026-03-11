@@ -1,0 +1,14 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 3f46a7e8-9f73-4e7a-b57a-603efbb176d1
+  title: DDA3020H Honors Machine Learning
+  description: My course notes for DDA3020H Honors Machine Learning, Spring 2026.
+  # keywords: []
+  # authors: []
+  github: https://github.com/tommyma3/DDA3020H-Honors_Machine_Learning-sp26
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png

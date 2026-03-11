@@ -1,0 +1,10 @@
+[project]
+name = "dda3020h-honors-machine-learning-sp26"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter-book>=2.1.2",
+    "pdfplumber>=0.11.9",
+]
