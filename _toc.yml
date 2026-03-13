@@ -1,4 +1,8 @@
 format: jb-book
 root: index
-chapters:
-  - file: Introduction.md
+parts:
+  - caption: Introduction to Machine Learning
+    chapters:
+      - file: _notes/basic-concepts.md
+      - file: _notes/review-of-probability.md
+      - file: _notes/crash-course-optimization.md
