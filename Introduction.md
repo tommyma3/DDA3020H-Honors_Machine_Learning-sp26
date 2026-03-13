@@ -1,44 +1,9 @@
 # Introduction to Machine Learning
 
 
----
 
-## Outline
+## Basic Concepts
 
-1. [What Is Machine Learning?](#1-what-is-machine-learning)
-2. [Supervised Learning](#2-supervised-learning)
-3. [Unsupervised Learning](#3-unsupervised-learning)
-4. [Basic Concepts in Machine Learning](#4-basic-concepts-in-machine-learning)
-5. [Review of Probability](#5-review-of-probability)
-
----
-
-## 1. What Is Machine Learning?
-
-### Definitions
-
-**Arthur Samuel (1959):**
-
-> "Machine learning is the field of study that gives computers the ability to learn without being explicitly programmed."
-
-**Tom Mitchell (1997):**
-
-> "A computer program is said to learn from **experience E** with respect to a class of **tasks T** and a **performance measure P**, if its performance at tasks in T, as measured by P, improves with experience E."
-
-### Example: Spam Filter
-
-| Mitchell's Component | Spam Filter |
-|----------------------|-------------|
-| **Task T** | Classify emails as spam or not spam |
-| **Experience E** | Your labels indicating which emails are spam or not |
-| **Performance P** | Fraction of emails correctly classified |
-
-### ML and Artificial Intelligence
-
-- **Artificial Intelligence (AI):** The study and development of machines or systems that can perform tasks requiring human-like intelligence — perception, reasoning, learning, decision making.
-- **Machine Learning:** A subfield of AI that focuses on algorithms enabling systems to **learn from data** and improve performance through experience.
-
-ML is interdisciplinary, drawing from statistics, mathematics, computer science, and domain-specific fields.
 
 ### Two Basic Paradigms
 
@@ -47,106 +12,7 @@ ML is interdisciplinary, drawing from statistics, mathematics, computer science,
 | **Supervised Learning** | Input–label pairs $\{(x_i, y_i)\}_{i=1}^n$ | Learn a mapping $x \mapsto y$ | Classification, Regression |
 | **Unsupervised Learning** | Unlabeled feature vectors $\{x_i\}_{i=1}^n$ | Discover underlying structure | Clustering, Dimensionality Reduction |
 
----
 
-## 2. Supervised Learning
-
-### Setup
-
-In supervised learning, the dataset consists of $N$ labeled examples:
-
-$$\{(x_i, y_i)\}_{i=1}^N$$
-
-Each input $x_i \in \mathbb{R}^D$ is a **feature vector** with $D$ dimensions:
-
-$$x_i = \bigl[x_i^{(1)}, \ldots, x_i^{(j)}, \ldots, x_i^{(D)}\bigr]^\top, \quad i = 1, \ldots, N.$$
-
-The label $y_i$ indicates the desired output:
-
-- **Classification:** $y_i \in \{1, 2, \ldots, C\}$ (discrete class)
-- **Regression:** $y_i \in \mathbb{R}$ (continuous value)
-
-### How Supervised Learning Works
-
-1. **Data collection:** obtain labeled data $\{(x_i, y_i)\}_{i=1}^N$.
-2. **Training:** learn model parameters from the training data.
-3. **Inference (testing):** use the trained model to predict the output for unseen input $x$.
-
-**Goal:** learn a function that **generalizes well** to unseen data.
-
-### Regression vs. Classification
-
-| Type | Output | Example |
-|------|--------|---------|
-| **Regression** | Continuous value $y \in \mathbb{R}$ | Predicting diamond price from its mass |
-| **Classification** | Discrete label $y \in \{1, \ldots, C\}$ | Classifying tumor as malignant/benign |
-
-**Quick check:** 
-- *Predicting how many items will sell over the next 3 months* → **Regression** (continuous output).
-- *Deciding whether a customer account has been compromised* → **Classification** (discrete output).
-
----
-
-## 3. Unsupervised Learning
-
-### Setup
-
-In unsupervised learning, the dataset consists of $n$ **unlabeled** examples:
-
-$$\{x_i\}_{i=1}^n$$
-
-Each $x_i$ is a feature vector. The goal is to learn a model that captures **useful structure or patterns** in the data without access to labels.
-
-### What Unsupervised Models Learn
-
-- **Clustering:** group similar data points together.
-- **Dimensionality reduction:** transform data into a new, lower-dimensional representation.
-
-**Main purpose:** understand data structure and support future inference or decision making.
-
-### Clustering
-
-- **Task:** partition unlabeled data points into groups (clusters).
-- **Performance criteria:**
-  - Points within the same cluster are *close* to each other.
-  - Points from different clusters are *far* from each other.
-  - Clusters provide reasonable coverage of the data.
-- **Key question:** how do we define and measure "close" and "far"? (Answered in later lectures.)
-
-### Dimensionality Reduction
-
-- **Task:** map high-dimensional data $x \in \mathbb{R}^D$ to a lower-dimensional representation $z \in \mathbb{R}^d$, where $d \ll D$.
-- **Purposes:**
-  - *Data simplification:* nonlinear structure → simpler representation.
-  - *Data visualization:* high-dimensional data → 2D or 3D.
-  - *Feature selection / representation learning:* reduce redundancy for downstream prediction.
-
-### Supervised vs. Unsupervised Learning
-
-| Aspect | Supervised | Unsupervised |
-|--------|-----------|--------------|
-| Labels | Required | Not required |
-| Goal | Learn a mapping $x \mapsto y$ | Discover structure in $x$ |
-| Tasks | Classification, Regression | Clustering, Dim. Reduction |
-| Evaluation | Accuracy on labeled test set | Cluster quality, reconstruction error |
-
----
-
-## 4. Basic Concepts in Machine Learning
-
-### Data and Assumptions
-
-**For supervised learning:**
-
-- **Training set:** $\mathcal{D}_\text{train} = \{(x_i, y_i)\}_{i=1}^n$, where $x_i \in \mathcal{X}$ (input features) and $y_i \in \mathcal{Y}$ (target labels).
-- **Test set:** $\mathcal{D}_\text{test} = \{(x_i, y_i)\}_{i=1}^m$, used to evaluate the trained model.
-
-**For unsupervised learning:**
-
-- **Training set:** $\mathcal{D}_\text{train} = \{x_i\}_{i=1}^n$, unlabeled feature vectors.
-- **Test set:** $\mathcal{D}_\text{test} = \{x_i\}_{i=1}^m$, used to assess learned structure or representations.
-
-**I.I.D. Assumption:** Samples are assumed to be drawn **independently and identically distributed (i.i.d.)** from the same underlying distribution. Training and test sets follow the same distribution.
 
 ### Target Function, Hypothesis, and Hypothesis Space
 
@@ -162,7 +28,7 @@ Each $x_i$ is a feature vector. The goal is to learn a model that captures **use
 
 $$J(h) = \frac{1}{n} \sum_{(x_i, y_i) \in \mathcal{D}_\text{train}} \bigl(h(x_i) - y_i\bigr)^2$$
 
-**Training (learning):** find the best hypothesis in $\mathcal{H}$ by minimizing the cost on the training set:
+**Training (learning):** find the best hypothesis in $\mathcal{H}$ by minimizing the cost on the training set (optimization):
 
 $$h^* = \arg\min_{h \in \mathcal{H}} \frac{1}{n} \sum_{(x_i, y_i) \in \mathcal{D}_\text{train}} \bigl(h(x_i) - y_i\bigr)^2$$
 
@@ -192,7 +58,7 @@ $$\text{Test error} = \frac{1}{m} \sum_{(x_i, y_i) \in \mathcal{D}_\text{test}} 
 
 ---
 
-## 5. Review of Probability
+## Review of Probability
 
 ### Random Experiments, Sample Spaces, and Events
 
@@ -255,19 +121,7 @@ $$P(X = x \mid Y = y) = \frac{P(X = x,\, Y = y)}{P(Y = y)}$$
 
 $$\boxed{P(X = x \mid Y = y) = \frac{P(X = x)\, P(Y = y \mid X = x)}{\displaystyle\sum_{x' \in \mathcal{X}} P(X = x')\, P(Y = y \mid X = x')}}$$
 
-**Medical diagnosis example:**  
-Let $x = 1$ denote a positive test result, $y = 1$ denote having the disease.
 
-Given:
-- $P(x=1 \mid y=1) = 0.8$ (true positive rate)
-- $P(x=1 \mid y=0) = 0.1$ (false positive rate)
-- $P(y=1) = 0.13$ (disease prevalence)
-
-**Question:** What is $P(y=1 \mid x=1)$?
-
-$$P(y=1 \mid x=1) = \frac{0.8 \times 0.13}{0.8 \times 0.13 + 0.1 \times 0.87} \approx 0.54$$
-
-Even with a positive test, there is only about a 54% chance of actually having the disease — because the disease is relatively rare.
 
 ### Independent Random Variables
 
@@ -345,16 +199,129 @@ $$\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = \frac{1}{
 
 where $\boldsymbol{\mu}$ is the mean vector and $\boldsymbol{\Sigma}$ is the covariance matrix.
 
----
 
-## Summary
+## Crash Course in Optimization
 
-| Topic | Key Takeaways |
-|-------|--------------|
-| **What is ML?** | Learning from experience; T–E–P framework (Mitchell). Subfield of AI. |
-| **Supervised learning** | Labeled data, learn $x \mapsto y$. Regression (continuous) vs. Classification (discrete). |
-| **Unsupervised learning** | Unlabeled data, discover structure (clustering, dim. reduction). |
-| **Core concepts** | Target function, hypothesis space, cost function, training, testing. |
-| **Probability** | PMF, PDF, Bayes' rule, independence, Gaussian distribution. |
+### Terminology
 
-**Next lecture:** Review of Optimization.
+- General Form of an Optimization Problem:
+  $$
+  \begin{aligned}
+  & \text{minimize / maximize} & & f(x) \\
+  & \text{subject to} & & x \in \Omega.
+  \end{aligned}
+  $$
+
+  - $x$: decision variable
+  - $f(x)$: objective function
+  - $\Omega$: feasible set (constraints)
+
+- **Feasible point:** a decision variable $x \in \Omega$ that satisfies the constraints.
+
+- **Feasible set (or feasible region) $\Omega$:** the set of all feasible points.
+
+- **Optimal solution:** a feasible point $x^* \in \Omega$ whose objective value is at least as that of any other feasible point.
+
+- **Optimal value:** $$f^* = \inf_{x \in \Omega} f(x) $$
+  If there exists $x^* \in \Omega$ such that $f(x^*) = f^*$, then the optimal value is sait to be attainable.
+
+- If $\Omega = \mathbb{R}^n$ (no constraints), the problem is called **unconstrained**; otherwise, it is a **constrained optimization** problem.
+
+
+
+- **Local minimizers.** A point $x^* \in \Omega$ is called:
+
+  - a **local minimizer** if there exists $\varepsilon > 0$ such that $f(x) \ge f(x^*)$ for all $x \in \Omega \cap B_\varepsilon(x^*)$;
+  - a **strict local minimizer** if $f(x) > f(x^*)$ for all $x \in (\Omega \cap B_\varepsilon(x^*)) \setminus \{x^*\}$.
+
+- **Global minimizers.** A point $x^* \in \Omega$ is called:
+
+  - a **global minimizer** if $f(x) \ge f(x^*)$ for all $x \in \Omega$;
+  - a **strict global minimizer** if $f(x) > f(x^*)$ for all $x \in \Omega \setminus \{x^*\}$.
+
+- **Stationary point (or critical point):** a point $x^*$ where the gradient of the objective function is zero, i.e., $\nabla f(x^*) = 0$.
+
+- **Saddle point:** a stationary point that is neither a local minimum nor a local maximum. 
+
+### Optimality Conditions
+
+#### Unconstrained Optimization
+
+- **FONC (First-Order Necessary Condition):** If $f$ is differentiable and $x^*$ is a local minimizer of $\min_{x \in \mathbf{R}^n} f(x)$, then $\nabla f(x^*) = 0$.
+
+- **SONC (Second-Order Necessary Condition):** If $f$ is twice differentiable and $x^*$ is a local minimizer of $\min_{x \in \mathbf{R}^n} f(x)$, then $\nabla f(x^*) = 0$ and $\nabla^2 f(x^*)$ is positive semi-definite.
+
+- **SOSC (Second-Order Sufficient Condition):** If $f$ is twice continuously differentiable and $x^*$ satisfies $\nabla f(x^*) = 0$ and $\nabla^2 f(x^*)$ is positive definite, then $x^*$ is a strict local minimizer.
+
+- **Sufficient Condition for Saddle Points:** If $\nabla f(x^*) = 0$ and $\nabla^2 f(x^*)$ is indefinite, then $x^*$ is a saddle point.
+
+#### Constrained Optimization
+
+- Definitions:
+  - **Feasible direction:** Given $x \in \Omega$, a direction $d$ is called a **feasible direction** at $x$ if $\exist \bar{t} > 0 \space \text{s.t.}  \space x + td \in \Omega, \space \forall 0 \leq t \leq \bar{t}$.
+
+  - **Descent direction:** Let $f$ be continuously differentiable. A direction $d$ is called a **descent direction** at $x$ if $\nabla f(x)^\top d < 0$. (Note: by Taylor's expansion, $x+td$ will decrease the function value if step size $t$ is small enough).
+
+- **FONC (First-Order Necessary Condition):** Let $x^*$ be a local minimizer of $\min_{x \in \Omega} f(x)$. Then, for any feasible direction $d$ at $x^*$, we have $\nabla f(x^*)^\top d \geq 0$.
+  - There are no feasible descent directions at a local minimum.
+  - In the unconstrained case, all directions are feasible, so $\nabla f(x^*) = 0$.
+
+- **Lagrangian**
+  - Problem setup:
+    $$
+    \begin{aligned}
+    & \min_{x \in \mathbf{R}^n} & & f(x) \\
+    & \text{s.t.} & & g_i(x) \leq 0, \quad i = 1, \ldots, m \\
+    & & & h_j(x) = 0, \quad j = 1, \ldots, p
+    \end{aligned}
+    $$
+    - Feasible set: $\Omega = \{x \in \mathbf{R}^n : g(x) \leq 0, h(x) =0\}$.
+    - Active constraints: $\mathcal{A}(x) = \{i : g_i(x) = 0\}$.
+    - Inactive constraints: $\mathcal{I}(x) = \{i : g_i(x) < 0\}$.
+  - Lagrangian function:
+    $$\mathcal{L}(x, \lambda, \nu) = f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \mu_j h_j(x)$$
+    where $\lambda_i \geq 0$ are the Lagrange multipliers for the inequality constraints and $\mu_j$ are the Lagrange multipliers for the equality constraints.
+  
+- **KKT Conditions:** Let $x$ be a local mimimizer, and assume a constaint qualification holds. Then there exist $\lambda_i \geq 0$ and $\mu_j$ such that:
+  - Stationarity: $\nabla f(x) + \sum_{i=1}^m \lambda_i \nabla g_i(x) + \sum_{j=1}^p \mu_j \nabla h_j(x) = 0$.
+  - Primal feasibility: $g_i(x) \leq 0$ for all $i$, and $h_j(x) = 0$ for all $j$.
+  - Dual feasibility: $\lambda_i \geq 0$ for all $i$.
+  - Complementarity: $\lambda_i g_i(x) = 0$ for all $i$.
+
+- **LICQ (Linear Independence Constraint Qualification):** The gradients of the active constraints at $x$ are linearly independent, i.e., $\{\nabla g_i(x) : i \in \mathcal{A}(x)\} \cup \{\nabla h_j(x) : j = 1, \ldots, p\}$ are linearly independent. (This is one of the constraint qualifications.)
+
+- A feasible point satisfying the KKT conditions is called a **KKT point**. 
+
+#### Convexity
+
+- Definitions:
+  - A set $\Omega$ is **convex** if for any $x, y \in \Omega$ and $\alpha \in [0,1]$, we have $\alpha x + (1-\alpha) y \in \Omega$.
+  - A function $f$ is **convex** if for any $x, y$ in its domain and $\alpha \in [0,1]$, we have $f(\alpha x + (1-\alpha) y) \leq \alpha f(x) + (1-\alpha) f(y)$.
+  - A function $f$ is **concave** if $-f$ is convex.
+  - A function is **strictly convex** if the inequality is strict for $x \neq y$ and $\alpha \in (0,1)$.
+  - A function is **strongly convex** with parameter $\mu > 0$ if
+    $$f(\alpha x + (1-\alpha) y) \leq \alpha f(x) + (1-\alpha) f(y) - \frac{\mu}{2} \alpha (1-\alpha) \|x-y\|^2$$
+    for all $x, y$ in its domain and $\alpha \in [0,1]$.
+
+- **Second-Order Characterization:** Let $f$ be twice differentiable on a convex open set $\Omega$. Then $f$ is convex on $\Omega$ if and only if its Hessian $\nabla^2 f(x)$ is positive semi-definite for all $x \in \Omega$.
+
+- **First-Order Characterization:** Let $f$ be differentiable on a convex open set $\Omega$. Then $f$ is convex on $\Omega$ if and only if $\forall x, y \in \Omega$, we have
+$$f(y) \geq f(x) + \nabla f(x)^\top (y-x)$$
+
+- **First-Order Characterizations of Convexity**
+  - **Strictly Convex Function:** The function $f$ is strictly convex if and only if $\forall x \neq y \in \Omega$, we have
+  $$f(y) > f(x) + \nabla f(x)^\top (y-x)$$
+
+  - **Strongly Convex Function:** The function $f$ is strongly convex with parameter $\mu > 0$ if and only if $\forall x, y \in \Omega$, we have
+  $$f(y) \geq f(x) + \nabla f(x)^\top (y-x) + \frac{\mu}{2} \|y-x\|^2$$
+
+- **Second-Order Characterizations of Convexity**
+  - **Strictly Convex Function:** The function $f$ is strictly convex if $\nabla^2 f(x)$ is positive definite for all $x \in \Omega$.
+
+  - **Strongly Convex Function:** The function $f$ is strongly convex with parameter $\mu > 0$ if and only if for all $x \in \Omega$, $$\lambda_{\min}(\nabla^2 f(x)) \geq \mu$$
+
+- Convex Calculus:
+  - **Sum Rule**: If $a_1, \ldots , a_m \geq 0$ and $f_1, \ldots, f_m$ are convex functions, then $f(x) = \sum_{i=1}^m a_i f_i(x)$ is also convex.
+  - **Composition with Linear Functions**: If $f: \mathbb{R}^m \to \mathbb{R}$ is convex and $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}$, then $g(x) = f(Ax + b)$ is convex.
+  - **Maximum of Convex Functions**: If $f_1, \ldots, f_m$ are convex functions, then $f(x) = \max \{f_1(x), \ldots, f_m(x)\}$ is also convex.
+  - **Composition Rule**: Let $\Omega \subseteq \mathbb{R}^n$ be a convex set. Suppose $g: \Omega \to \mathbb{R}$ is a convex function and $f: \mathbb{R} \to \mathbb{R}$ is convex and non-decreasing on an interval $I \supseteq g(\Omega)$. Then the composition $f \circ g$ is convex.
