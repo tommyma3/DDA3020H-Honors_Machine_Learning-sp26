@@ -6,3 +6,7 @@ parts:
       - file: _notes/basic-concepts.md
       - file: _notes/review-of-probability.md
       - file: _notes/crash-course-optimization.md
+  - caption: Linear Regression
+    chapters:
+      - file: _notes/linear-regression.md
+      - file: _notes/generalization.md
