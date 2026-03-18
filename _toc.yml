@@ -10,3 +10,8 @@ parts:
     chapters:
       - file: _notes/linear-regression.md
       - file: _notes/generalization.md
+  - caption: Logistic Regression
+    chapters:
+      - file: _notes/logistic-regression.md
+      - file: _notes/softmax-regression.md
+      - file: _notes/logistic-regression-summary.md
