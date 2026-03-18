@@ -9,6 +9,7 @@ project:
   github: https://github.com/tommyma3/DDA3020H-Honors_Machine_Learning-sp26
 site:
   template: book-theme
-  # options:
-  #   favicon: favicon.ico
+  options:
+    logo_text: DDA3020H
+  #  favicon: favicon.ico
   #   logo: site_logo.png

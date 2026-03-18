@@ -1,6 +1,8 @@
 format: jb-book
 root: index
 parts:
+  - id: primary_sidebar_footer
+    description: DDA3020H
   - caption: Introduction to Machine Learning
     chapters:
       - file: _notes/basic-concepts.md
@@ -15,3 +17,7 @@ parts:
       - file: _notes/logistic-regression.md
       - file: _notes/softmax-regression.md
       - file: _notes/logistic-regression-summary.md
+  - caption: SVM
+    chapters:
+      - file: _notes/glm.md
+      - file: _notes/svm.md
