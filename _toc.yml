@@ -24,4 +24,7 @@ parts:
   - caption: Decision Trees
     chapters:
       - file: _notes/decision-tree.md
-    
+  - caption: Neural Networks
+    chapters:
+      - file: _notes/nn.md
+      - file: _notes/backprop.md
