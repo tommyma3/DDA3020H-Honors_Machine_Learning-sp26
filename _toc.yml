@@ -21,3 +21,7 @@ parts:
     chapters:
       - file: _notes/glm.md
       - file: _notes/svm.md
+  - caption: Decision Trees
+    chapters:
+      - file: _notes/decision-tree.md
+    
