@@ -28,3 +28,16 @@ parts:
     chapters:
       - file: _notes/nn.md
       - file: _notes/backprop.md
+      - file: _notes/optimizers.md
+      - file: _notes/cnn.md
+      - file: _notes/rnn-transformer.md
+  - caption: Model Evaluation
+    chapters:
+      - file: _notes/performance-evaluation.md
+  - caption: Unsupervised Learning
+    chapters:
+      - file: _notes/kde-autoencoders.md
+      - file: _notes/kmeans.md
+      - file: _notes/gmm-em.md
+      - file: _notes/pca.md
+      - file: _notes/special-topics.md
